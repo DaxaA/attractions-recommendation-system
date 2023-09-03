@@ -27,6 +27,10 @@ public class Review {
     @JoinColumn(name = "attraction_id")
     private Attraction attraction;
 
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Review(int rate, String review) {
         this.rate = rate;
         this.review = review;

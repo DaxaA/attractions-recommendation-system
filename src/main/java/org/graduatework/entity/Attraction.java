@@ -43,7 +43,10 @@ public class Attraction {
     @OneToMany(mappedBy = "attraction", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "attraction", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "attraction_tag",
+            joinColumns = @JoinColumn(name = "attraction_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tag;
 
     public Attraction() {

@@ -20,6 +20,8 @@ public class Tag {
     private String tag;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "attraction_id")
+    @JoinTable(name = "attraction_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "attraction_id"))
     private List<Attraction> attraction;
 }
